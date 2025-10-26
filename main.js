@@ -32,9 +32,13 @@ async function loadPortfolioItems() {
         </div>
       ` : ''
 
+      const thumbnailUrl = hasVideo && item.video_thumbnail_url
+        ? item.video_thumbnail_url
+        : item.image_url
+
       return `
         <div class="portfolio-item" data-id="${item.id}" ${hasVideo ? `data-vimeo="${item.vimeo_url}"` : ''}>
-          ${item.image_url ? `<img src="${item.image_url}" alt="${item.title}" />` : ''}
+          ${thumbnailUrl ? `<img src="${thumbnailUrl}" alt="${item.title}" />` : ''}
           ${playIconHtml}
           <div class="portfolio-overlay">
             <span class="portfolio-category">${item.category || 'Portfolio'}</span>
