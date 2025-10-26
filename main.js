@@ -64,8 +64,9 @@ async function loadPortfolioItems() {
     portfolioGrid.querySelectorAll('.portfolio-item[data-vimeo]').forEach(item => {
       item.addEventListener('click', () => {
         const vimeoUrl = item.dataset.vimeo
+        const title = item.querySelector('.portfolio-title').textContent
         if (vimeoUrl) {
-          window.open(vimeoUrl, '_blank')
+          openVideoViewer(vimeoUrl, title)
         }
       })
     })
@@ -113,6 +114,69 @@ function setupNavigation() {
       header.style.backgroundColor = 'rgba(26, 26, 26, 0.95)'
     }
   })
+}
+
+function openVideoViewer(vimeoUrl, title) {
+  const vimeoId = extractVimeoId(vimeoUrl)
+  if (!vimeoId) {
+    console.error('Invalid Vimeo URL:', vimeoUrl)
+    return
+  }
+
+  const modal = document.createElement('div')
+  modal.className = 'video-viewer-modal'
+  modal.innerHTML = `
+    <div class="video-viewer-content">
+      <button class="video-viewer-close">&times;</button>
+      <h3 class="video-viewer-title">${title}</h3>
+      <div class="video-viewer-iframe-wrapper">
+        <iframe
+          src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&color=ff6b35&title=0&byline=0&portrait=0"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          class="video-viewer-iframe">
+        </iframe>
+      </div>
+    </div>
+  `
+
+  document.body.appendChild(modal)
+
+  const closeBtn = modal.querySelector('.video-viewer-close')
+  closeBtn.addEventListener('click', () => {
+    modal.remove()
+  })
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.remove()
+    }
+  })
+
+  document.addEventListener('keydown', function escHandler(e) {
+    if (e.key === 'Escape') {
+      modal.remove()
+      document.removeEventListener('keydown', escHandler)
+    }
+  })
+}
+
+function extractVimeoId(url) {
+  const patterns = [
+    /vimeo\.com\/(\d+)/,
+    /vimeo\.com\/video\/(\d+)/,
+    /player\.vimeo\.com\/video\/(\d+)/
+  ]
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern)
+    if (match) {
+      return match[1]
+    }
+  }
+
+  return null
 }
 
 function open360Viewer(imageUrl, title) {
