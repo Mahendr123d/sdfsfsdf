@@ -1,15 +1,278 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple HTML Page</title>
+    <title>XANDER JONKERS - Drone Cinematography</title>
   </head>
   <body>
-    <div id="app">
-      <h1>Welcome</h1>
-      <p>This is a simple HTML page.</p>
-    </div>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <a href="#" class="logo">XANDER JONKERS</a>
+          <nav class="nav">
+            <a href="#portfolio" class="nav-link">PORTFOLIO</a>
+            <a href="#about" class="nav-link">ABOUT</a>
+            <a href="#contact" class="nav-link">CONTACT</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <span class="hero-subtitle">DRONE CINEMATOGRAPHY</span>
+            <h1 class="hero-title">
+              <span class="hero-title-main">AERIAL</span>
+              <span class="hero-title-outline">VIEWS</span>
+            </h1>
+            <p class="hero-description">
+              Unieke luchtbeelden die jouw project naar een hoger niveau tillen. Van vastgoed tot evenementen, wij vangen het perfecte perspectief.
+            </p>
+            <div class="hero-buttons">
+              <a href="#portfolio" class="btn btn-primary">VIEW WORK</a>
+              <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
+            </div>
+          </div>
+          <div class="hero-video">
+            <div class="video-placeholder">
+              <div class="video-frame">
+                <div class="video-content">
+                  <svg class="video-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                    <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <p class="video-text">player.vimeo.com heeft de verbinding geweigerd.</p>
+                </div>
+                <div class="video-footer">
+                  <span class="video-title">SHOWREEL 2024</span>
+                  <span class="video-subtitle">Aerial Cinematography</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-indicator">SCROLL DOWN</div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+        <span class="section-subtitle">OUR WORK</span>
+        <h2 class="section-title">PORTFOLIO</h2>
+        <p class="section-description">
+          Een collectie van onze beste luchtopnames. Van cinematische landschappen tot dynamische evenementen.
+        </p>
+        <div id="portfolio-grid" class="portfolio-grid">
+          <!-- Portfolio items will be loaded here via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <span class="section-subtitle">ABOUT US</span>
+            <h2 class="section-title">
+              <span class="title-main">FRESH</span>
+              <span class="title-outline">PERSPECTIVE</span>
+            </h2>
+            <p class="about-description">
+              Nieuwe in de game, maar gedreven om elke vlucht tot een meesterwerk te maken. Met een frisse blik en onbeperkte ambitie leg ik jouw verhaal vast vanuit de lucht.
+            </p>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <div class="stat-value">120M</div>
+                <div class="stat-label">VLIEGHOOGTE</div>
+              </div>
+              <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+                <div class="stat-value">100%</div>
+                <div class="stat-label">TEVREDEN</div>
+              </div>
+              <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <div class="stat-value">4K</div>
+                <div class="stat-label">FOCUS</div>
+              </div>
+              <div class="stat-card">
+                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+                <div class="stat-value">24U</div>
+                <div class="stat-label">REACTIETIJD</div>
+              </div>
+            </div>
+
+            <div class="about-details">
+              <p>
+                Klaar om jouw project naar nieuwe hoogtes te tillen. Geen jarenlange ervaring, maar wel de nieuwste technieken en een onvermoeibare drive voor perfectie.
+              </p>
+              <p>
+                Elke opdracht is een kans om te leren, groeien en beelden te leveren waar je trots op kunt zijn. Laten we samen iets moois creëren.
+              </p>
+            </div>
+          </div>
+          <div class="about-image">
+            <div class="image-placeholder">
+              <div class="image-frame">
+                <span class="image-label">FOTO</span>
+                <span class="image-text">Your Image Here</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <span class="section-subtitle">GET IN TOUCH</span>
+        <h2 class="section-title contact-title">LET'S TALK</h2>
+        <p class="section-description">
+          Klaar om je project naar een hoger niveau te tillen? Neem contact op en laten we samen iets bijzonders creëren.
+        </p>
+
+        <div class="contact-content">
+          <div class="contact-info-wrapper">
+            <div class="contact-info-box">
+              <h3 class="contact-info-title">CONTACT INFO</h3>
+              <div class="contact-info-item">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-label">EMAIL</div>
+                  <div class="contact-value">info@xanderjonkers.nl</div>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-label">PHONE</div>
+                  <div class="contact-value">+31 6 1375 0618</div>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-label">LOCATION</div>
+                  <div class="contact-value">Nederland</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="why-choose-box">
+              <h3 class="why-choose-title">WHY CHOOSE US?</h3>
+              <ul class="why-choose-list">
+                <li>Professionele cinematische kwaliteit</li>
+                <li>Snelle levering en communicatie</li>
+                <li>State-of-the-art equipment</li>
+                <li>Flexibel en creatief</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="contact-form-wrapper">
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <label for="name">NAME *</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">EMAIL *</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">PHONE</label>
+                <input type="tel" id="phone" name="phone" placeholder="+31 6 1375 0618">
+              </div>
+              <div class="form-group">
+                <label for="message">MESSAGE *</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">
+                SEND MESSAGE
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo">XANDER JONKERS</div>
+            <p class="footer-text">
+              Professionele luchtfotografie en videografie voor projecten die impact maken. Van vastgoed tot evenementen, ik lever beelden die spreken.
+            </p>
+            <a href="#home" class="back-to-top">BACK TO TOP ↑</a>
+          </div>
+          <div class="footer-middle">
+            <h4 class="footer-heading">CONTACT</h4>
+            <a href="mailto:info@xanderjonkers.nl" class="footer-link">info@xanderjonkers.nl</a>
+            <a href="tel:+31613750618" class="footer-link">+31 6 1375 0618</a>
+          </div>
+          <div class="footer-right">
+            <h4 class="footer-heading">FOLLOW US</h4>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 XANDER JONKERS. ALL RIGHTS RESERVED.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
   </body>
 </html>
