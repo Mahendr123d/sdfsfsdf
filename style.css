@@ -71,48 +71,24 @@ body::before {
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.logo-icon {
-  font-size: 1.8rem;
-  transform: rotate(-45deg);
-  filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.6));
-  transition: all 0.3s ease;
-}
-
-.logo:hover .logo-icon {
-  transform: rotate(-45deg) translateY(-3px);
-  filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.8));
-}
-
-.logo-text {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.5rem;
   font-weight: 900;
   color: var(--color-text);
-  letter-spacing: 0.15em;
+  text-decoration: none;
+  letter-spacing: 0.1em;
   position: relative;
   text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
 }
 
-.logo-text::after {
+.logo::after {
   content: '';
   position: absolute;
-  bottom: -3px;
+  bottom: -5px;
   left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--color-primary);
-  transition: width 0.3s ease;
-}
-
-.logo:hover .logo-text::after {
-  width: 100%;
+  width: 30%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, transparent 100%);
 }
 
 .nav {
