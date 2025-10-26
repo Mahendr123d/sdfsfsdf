@@ -1333,6 +1333,90 @@ section {
   letter-spacing: 0.05em;
 }
 
+/* Custom Notification */
+.custom-notification {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  max-width: 420px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  transform: translateX(calc(100% + 2rem));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.custom-notification.show {
+  transform: translateX(0);
+}
+
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.notification-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-notification-success .notification-icon {
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.1);
+}
+
+.custom-notification-error .notification-icon {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.notification-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.notification-message {
+  flex: 1;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  padding-top: 2px;
+}
+
+.notification-close {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  padding: 0;
+  margin-top: -4px;
+}
+
+.notification-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text);
+}
+
 @media (max-width: 1024px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -1400,6 +1484,13 @@ section {
 
   .portfolio-grid {
     grid-template-columns: 1fr;
+  }
+
+  .custom-notification {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    max-width: none;
   }
 
   .portfolio-item,

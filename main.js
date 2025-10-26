@@ -269,6 +269,41 @@ async function open360Viewer(imageUrl, title) {
   })
 }
 
+function showNotification(message, type = 'success') {
+  const notification = document.createElement('div')
+  notification.className = `custom-notification custom-notification-${type}`
+  notification.innerHTML = `
+    <div class="notification-content">
+      <div class="notification-icon">
+        ${type === 'success'
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>'
+        }
+      </div>
+      <p class="notification-message">${message}</p>
+      <button class="notification-close" aria-label="Sluiten">&times;</button>
+    </div>
+  `
+
+  document.body.appendChild(notification)
+
+  // Animate in
+  setTimeout(() => notification.classList.add('show'), 10)
+
+  // Close button handler
+  const closeBtn = notification.querySelector('.notification-close')
+  closeBtn.addEventListener('click', () => {
+    notification.classList.remove('show')
+    setTimeout(() => notification.remove(), 300)
+  })
+
+  // Auto remove after 5 seconds
+  setTimeout(() => {
+    notification.classList.remove('show')
+    setTimeout(() => notification.remove(), 300)
+  }, 5000)
+}
+
 async function setupContactForm() {
   const form = document.getElementById('contact-form')
 
@@ -295,11 +330,11 @@ async function setupContactForm() {
 
       if (error) throw error
 
-      alert('Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.')
+      showNotification('Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.', 'success')
       form.reset()
     } catch (error) {
       console.error('Error submitting form:', error)
-      alert('Er is een fout opgetreden bij het verzenden. Probeer het later opnieuw.')
+      showNotification('Er is een fout opgetreden bij het verzenden. Probeer het later opnieuw.', 'error')
     } finally {
       submitButton.textContent = originalButtonText
       submitButton.disabled = false
