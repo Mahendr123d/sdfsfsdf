@@ -24,10 +24,21 @@ async function loadPortfolioItems() {
 
     portfolioGrid.innerHTML = items.map(item => {
       const hasVideo = item.vimeo_url
+      const has360Photo = item.photo_360_url
+
       const playIconHtml = hasVideo ? `
         <div class="portfolio-play-icon">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      ` : ''
+
+      const view360IconHtml = has360Photo ? `
+        <div class="portfolio-360-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8 S16.41,20,12,20z"/>
+            <path d="M12,6c-3.31,0-6,2.69-6,6s2.69,6,6,6s6-2.69,6-6S15.31,6,12,6z M12,16c-2.21,0-4-1.79-4-4s1.79-4,4-4s4,1.79,4,4 S14.21,16,12,16z"/>
           </svg>
         </div>
       ` : ''
@@ -37,9 +48,10 @@ async function loadPortfolioItems() {
         : item.image_url
 
       return `
-        <div class="portfolio-item" data-id="${item.id}" ${hasVideo ? `data-vimeo="${item.vimeo_url}"` : ''}>
+        <div class="portfolio-item" data-id="${item.id}" ${hasVideo ? `data-vimeo="${item.vimeo_url}"` : ''} ${has360Photo ? `data-360="${item.photo_360_url}"` : ''}>
           ${thumbnailUrl ? `<img src="${thumbnailUrl}" alt="${item.title}" />` : ''}
           ${playIconHtml}
+          ${view360IconHtml}
           <div class="portfolio-overlay">
             <span class="portfolio-category">${item.category || 'Portfolio'}</span>
             <h3 class="portfolio-title">${item.title}</h3>
@@ -54,6 +66,15 @@ async function loadPortfolioItems() {
         const vimeoUrl = item.dataset.vimeo
         if (vimeoUrl) {
           window.open(vimeoUrl, '_blank')
+        }
+      })
+    })
+
+    portfolioGrid.querySelectorAll('.portfolio-item[data-360]').forEach(item => {
+      item.addEventListener('click', () => {
+        const photo360Url = item.dataset['360']
+        if (photo360Url) {
+          open360Viewer(photo360Url, item.querySelector('.portfolio-title').textContent)
         }
       })
     })
@@ -90,6 +111,51 @@ function setupNavigation() {
       header.style.backgroundColor = 'rgba(26, 26, 26, 0.98)'
     } else {
       header.style.backgroundColor = 'rgba(26, 26, 26, 0.95)'
+    }
+  })
+}
+
+function open360Viewer(imageUrl, title) {
+  const modal = document.createElement('div')
+  modal.className = 'viewer-360-modal'
+  modal.innerHTML = `
+    <div class="viewer-360-content">
+      <button class="viewer-360-close">&times;</button>
+      <h3 class="viewer-360-title">${title}</h3>
+      <div id="panorama" class="viewer-360-panorama"></div>
+    </div>
+  `
+
+  document.body.appendChild(modal)
+
+  const viewer = pannellum.viewer('panorama', {
+    type: 'equirectangular',
+    panorama: imageUrl,
+    autoLoad: true,
+    showControls: true,
+    compass: true,
+    northOffset: 0,
+    hotSpotDebug: false
+  })
+
+  const closeBtn = modal.querySelector('.viewer-360-close')
+  closeBtn.addEventListener('click', () => {
+    viewer.destroy()
+    modal.remove()
+  })
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      viewer.destroy()
+      modal.remove()
+    }
+  })
+
+  document.addEventListener('keydown', function escHandler(e) {
+    if (e.key === 'Escape') {
+      viewer.destroy()
+      modal.remove()
+      document.removeEventListener('keydown', escHandler)
     }
   })
 }

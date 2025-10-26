@@ -12,6 +12,7 @@
     - `vimeo_url` (text, optional) - URL to Vimeo video
     - `image_url` (text, optional) - URL to cover/thumbnail image (fallback if no video thumbnail)
     - `video_thumbnail_url` (text, optional) - URL to custom video thumbnail (used when vimeo_url is present)
+    - `photo_360_url` (text, optional) - URL to 360-degree equirectangular photo for panoramic viewer
     - `category` (text) - Category of the item (e.g., "360", "Drone", "Brug")
     - `order_index` (integer) - For custom ordering of items
     - `is_visible` (boolean) - Whether item should be displayed
@@ -31,6 +32,7 @@ CREATE TABLE IF NOT EXISTS portfolio_items (
   vimeo_url text,
   image_url text,
   video_thumbnail_url text,
+  photo_360_url text,
   category text NOT NULL DEFAULT '',
   order_index integer NOT NULL DEFAULT 0,
   is_visible boolean NOT NULL DEFAULT true,
