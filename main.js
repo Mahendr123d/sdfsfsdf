@@ -224,11 +224,16 @@ function open360Viewer(imageUrl, title) {
   })
 }
 
-function setupContactForm() {
+async function setupContactForm() {
   const form = document.getElementById('contact-form')
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault()
+
+    const submitButton = form.querySelector('button[type="submit"]')
+    const originalButtonText = submitButton.textContent
+    submitButton.textContent = 'Verzenden...'
+    submitButton.disabled = true
 
     const formData = new FormData(form)
     const data = {
@@ -238,10 +243,22 @@ function setupContactForm() {
       message: formData.get('message')
     }
 
-    console.log('Form submitted:', data)
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([data])
 
-    alert('Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.')
-    form.reset()
+      if (error) throw error
+
+      alert('Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.')
+      form.reset()
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('Er is een fout opgetreden bij het verzenden. Probeer het later opnieuw.')
+    } finally {
+      submitButton.textContent = originalButtonText
+      submitButton.disabled = false
+    }
   })
 }
 
