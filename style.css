@@ -389,7 +389,7 @@ body::before {
 }
 
 .video-frame {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;
   display: flex;
   flex-direction: column;
   position: relative;
