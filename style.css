@@ -32,8 +32,6 @@ body {
   overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
 }
 
 body::before {
@@ -1459,74 +1457,33 @@ section {
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1.25rem;
-  }
-
-  .header {
-    padding: 1.25rem 0;
-  }
-
   .nav {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .nav-link {
     font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-  }
-
-  .hero {
-    padding: 8rem 0 5rem;
   }
 
   .hero-title-main,
   .hero-title-outline {
-    font-size: 2.5rem;
-    line-height: 1.1;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .hero-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .btn-primary {
-    padding: 0.875rem 1.75rem;
-    font-size: 0.9rem;
+    font-size: 3.5rem;
   }
 
   .section-title {
-    font-size: 2.25rem;
-    line-height: 1.2;
+    font-size: 3rem;
   }
 
   .contact-title {
-    font-size: 2.5rem;
-    line-height: 1.2;
+    font-size: 3.5rem;
   }
 
   .stats-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
   }
 
   .portfolio-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
   }
 
   .custom-notification {
@@ -1544,80 +1501,10 @@ section {
   .portfolio-item:nth-child(6n+5),
   .portfolio-item:nth-child(6n+6) {
     grid-column: span 1;
-    height: 240px;
-  }
-
-  .portfolio-overlay {
-    padding: 1.25rem;
-  }
-
-  .portfolio-title {
-    font-size: 1.1rem;
-  }
-
-  .portfolio-category {
-    font-size: 0.8rem;
-  }
-
-  .contact-form {
-    gap: 1rem;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    padding: 0.875rem;
-    font-size: 0.95rem;
+    height: 280px;
   }
 
   section {
-    padding: 4rem 0;
-  }
-
-  .hero-video {
-    margin-top: 2rem;
-  }
-
-  .video-frame {
-    height: 280px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title-main,
-  .hero-title-outline {
-    font-size: 2rem;
-  }
-
-  .section-title {
-    font-size: 1.875rem;
-  }
-
-  .contact-title {
-    font-size: 2rem;
-  }
-
-  .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
-  .portfolio-item,
-  .portfolio-item:nth-child(6n+1),
-  .portfolio-item:nth-child(6n+2),
-  .portfolio-item:nth-child(6n+3),
-  .portfolio-item:nth-child(6n+4),
-  .portfolio-item:nth-child(6n+5),
-  .portfolio-item:nth-child(6n+6) {
-    height: 200px;
-  }
-
-  .video-frame {
-    height: 240px;
+    padding: 5rem 0;
   }
 }
