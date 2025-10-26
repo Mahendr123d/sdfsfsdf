@@ -5,24 +5,49 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
+// Cache for portfolio items
+let portfolioCache = null
+let portfolioCacheTime = 0
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
 async function loadPortfolioItems() {
   const portfolioGrid = document.getElementById('portfolio-grid')
 
   try {
-    const { data: items, error } = await supabase
-      .from('portfolio_items')
-      .select('*')
-      .eq('is_visible', true)
-      .order('order_index', { ascending: true })
-
-    if (error) throw error
-
-    if (!items || items.length === 0) {
-      portfolioGrid.innerHTML = '<p style="color: var(--color-text-muted); grid-column: 1 / -1; text-align: center; padding: 3rem;">Binnenkort beschikbaar...</p>'
+    // Check cache first
+    const now = Date.now()
+    if (portfolioCache && (now - portfolioCacheTime) < CACHE_DURATION) {
+      renderPortfolioItems(portfolioCache, portfolioGrid)
       return
     }
 
-    portfolioGrid.innerHTML = items.map(item => {
+    const { data: items, error } = await supabase
+      .from('portfolio_items')
+      .select('id, title, category, description, image_url, video_thumbnail_url, vimeo_url, photo_360_url')
+      .eq('is_visible', true)
+      .order('order_index', { ascending: true })
+      .limit(20)
+
+    if (error) throw error
+
+    // Update cache
+    portfolioCache = items
+    portfolioCacheTime = now
+
+    renderPortfolioItems(items, portfolioGrid)
+  } catch (error) {
+    console.error('Error loading portfolio items:', error)
+    portfolioGrid.innerHTML = '<p style="color: var(--color-text-muted); grid-column: 1 / -1; text-align: center; padding: 3rem;">Portfolio items laden mislukt.</p>'
+  }
+}
+
+function renderPortfolioItems(items, portfolioGrid) {
+  if (!items || items.length === 0) {
+    portfolioGrid.innerHTML = '<p style="color: var(--color-text-muted); grid-column: 1 / -1; text-align: center; padding: 3rem;">Binnenkort beschikbaar...</p>'
+    return
+  }
+
+  portfolioGrid.innerHTML = items.map(item => {
       const hasVideo = item.vimeo_url
       const has360Photo = item.photo_360_url
 
@@ -49,7 +74,7 @@ async function loadPortfolioItems() {
 
       return `
         <div class="portfolio-item" data-id="${item.id}" ${hasVideo ? `data-vimeo="${item.vimeo_url}"` : ''} ${has360Photo ? `data-360="${item.photo_360_url}"` : ''}>
-          ${thumbnailUrl ? `<img src="${thumbnailUrl}" alt="${item.title}" />` : ''}
+          ${thumbnailUrl ? `<img src="${thumbnailUrl}" alt="${item.title}" loading="lazy" decoding="async" />` : ''}
           ${playIconHtml}
           ${view360IconHtml}
           <div class="portfolio-overlay">
@@ -79,11 +104,6 @@ async function loadPortfolioItems() {
         }
       })
     })
-
-  } catch (error) {
-    console.error('Error loading portfolio items:', error)
-    portfolioGrid.innerHTML = '<p style="color: var(--color-text-muted); grid-column: 1 / -1; text-align: center; padding: 3rem;">Portfolio items laden mislukt.</p>'
-  }
 }
 
 function setupNavigation() {
@@ -179,7 +199,32 @@ function extractVimeoId(url) {
   return null
 }
 
-function open360Viewer(imageUrl, title) {
+function loadPannellum() {
+  return new Promise((resolve, reject) => {
+    if (typeof pannellum !== 'undefined') {
+      resolve()
+      return
+    }
+
+    const css = document.createElement('link')
+    css.rel = 'stylesheet'
+    css.href = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css'
+    document.head.appendChild(css)
+
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js'
+    script.onload = resolve
+    script.onerror = reject
+    document.head.appendChild(script)
+  })
+}
+
+async function open360Viewer(imageUrl, title) {
+  // Lazy load pannellum if not already loaded
+  if (typeof pannellum === 'undefined') {
+    await loadPannellum()
+  }
+
   const modal = document.createElement('div')
   modal.className = 'viewer-360-modal'
   modal.innerHTML = `
