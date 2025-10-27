@@ -78,9 +78,10 @@ function renderPortfolioItems(items, portfolioGrid) {
           ${playIconHtml}
           ${view360IconHtml}
           <div class="portfolio-overlay">
-            <span class="portfolio-category">${item.category || 'Portfolio'}</span>
-            <h3 class="portfolio-title">${item.title}</h3>
-            ${item.description ? `<p style="color: var(--color-text-muted); margin-top: 0.5rem;">${item.description}</p>` : ''}
+            <div>
+              <span class="portfolio-category">${item.category || 'Work'}</span>
+              <h3 class="portfolio-title">${item.title}</h3>
+            </div>
           </div>
         </div>
       `
