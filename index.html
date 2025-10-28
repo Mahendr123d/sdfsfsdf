@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=1400" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Professionele drone cinematografie door Xander Jonkers. Luchtbeelden die je verhaal vertellen." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,15 @@
       <div class="container">
         <div class="header-content">
           <a href="#" class="logo">XANDER JONKERS</a>
+          <button class="mobile-menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <nav class="nav">
             <a href="#portfolio" class="nav-link">PORTFOLIO</a>
-            <a href="#about" class="nav-link">ABOUT</a>
+            <a href="#pricing" class="nav-link">TARIEVEN</a>
+            <a href="#about" class="nav-link">OVER MIJ</a>
             <a href="#contact" class="nav-link">CONTACT</a>
           </nav>
         </div>
@@ -28,55 +34,109 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-      <div class="container">
+      <div class="hero-video-bg">
+        <iframe
+          src="https://www.youtube.com/embed/CDBBDArJpk8?autoplay=1&mute=1&loop=1&playlist=CDBBDArJpk8&controls=0&modestbranding=1&rel=0&showinfo=0&disablekb=1&iv_load_policy=3&playsinline=1"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          class="hero-video-element"
+          style="pointer-events: none;">
+        </iframe>
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="container hero-container">
         <div class="hero-content">
-          <div class="hero-text">
-            <span class="hero-subtitle">↗ Xander Jonkers</span>
-            <h1 class="hero-title">
-              <span class="hero-title-main">Capturing perspectives</span>
-              <span class="hero-title-sub">from above</span>
-            </h1>
-            <p class="hero-description">
-              Luchtbeelden die je verhaal vertellen. Geen corporate praat, gewoon mooie beelden die werken.
-            </p>
-            <div class="hero-buttons">
-              <a href="#portfolio" class="btn btn-primary">Bekijk werk</a>
-              <a href="#contact" class="btn btn-secondary">Start project</a>
-            </div>
-          </div>
-          <div class="hero-video">
-            <div class="video-placeholder">
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/CDBBDArJpk8?autoplay=1&mute=1&loop=1&playlist=CDBBDArJpk8&controls=0&modestbranding=1&rel=0&showinfo=0"
-                  frameborder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  allowfullscreen
-                  loading="lazy"
-                  class="hero-video-iframe">
-                </iframe>
-                <div class="video-footer">
-                  <span class="video-title">Showreel '25</span>
-                  <span class="video-subtitle">Recent werk</span>
-                </div>
-              </div>
-            </div>
+          <span class="hero-subtitle">Professionele Drone Cinematografie</span>
+          <h1 class="hero-title">
+            <span class="hero-title-main">Vastgoed vanuit</span>
+            <span class="hero-title-sub">een nieuw perspectief</span>
+          </h1>
+          <p class="hero-description">
+            Laat uw vastgoed schitteren met professionele luchtfotografie en 360° panorama's. Perfect voor makelaars, ontwikkelaars en architecten.
+          </p>
+          <div class="hero-buttons">
+            <a href="#portfolio" class="btn btn-primary">Bekijk Projecten</a>
+            <a href="#pricing" class="btn btn-secondary">Tarieven</a>
           </div>
         </div>
-        <div class="scroll-indicator">SCROLL DOWN</div>
+        <div class="scroll-indicator">SCROLL</div>
       </div>
     </section>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
       <div class="container">
-        <span class="section-subtitle">Selected work</span>
-        <h2 class="section-title">Portfolio</h2>
+        <span class="section-subtitle">Projecten</span>
+        <h2 class="section-title">Vastgoed Portfolio</h2>
         <p class="section-description">
-          Van commerciële shoots tot persoonlijke projecten. Elk project krijgt dezelfde aandacht voor detail.
+          Van luxe villa's tot nieuwbouwprojecten. Professionele luchtbeelden die uw vastgoed perfect presenteren. Klik op een project voor meer informatie.
         </p>
         <div id="portfolio-grid" class="portfolio-grid">
           <!-- Portfolio items will be loaded here via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <span class="section-subtitle">Tarieven</span>
+        <h2 class="section-title">Transparante Prijzen</h2>
+        <p class="section-description">
+          Kies het pakket dat bij uw project past. Alle pakketten inclusief nabewerking en levering binnen 48 uur.
+        </p>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3 class="pricing-name">Basis</h3>
+              <div class="pricing-price">
+                <span class="pricing-amount">€299</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>15 professionele foto's</li>
+              <li>Basis nabewerking</li>
+              <li>Levering binnen 48u</li>
+              <li>Online gallerij</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary btn-full">Kies Basis</a>
+          </div>
+          <div class="pricing-card pricing-card-featured">
+            <div class="pricing-badge">Populair</div>
+            <div class="pricing-header">
+              <h3 class="pricing-name">Compleet</h3>
+              <div class="pricing-price">
+                <span class="pricing-amount">€549</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>30 professionele foto's</li>
+              <li>2 minuten video (4K)</li>
+              <li>360° panorama</li>
+              <li>Premium nabewerking</li>
+              <li>Levering binnen 48u</li>
+              <li>Online gallerij + downloads</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-full">Kies Compleet</a>
+          </div>
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3 class="pricing-name">Premium</h3>
+              <div class="pricing-price">
+                <span class="pricing-amount">€899</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>Onbeperkt foto's</li>
+              <li>4 minuten video (4K)</li>
+              <li>Meerdere 360° panorama's</li>
+              <li>Premium nabewerking</li>
+              <li>Virtual tour</li>
+              <li>Levering binnen 24u</li>
+              <li>Volledige gebruiksrechten</li>
+            </ul>
+            <a href="#contact" class="btn btn-secondary btn-full">Kies Premium</a>
+          </div>
         </div>
       </div>
     </section>
@@ -86,13 +146,13 @@
       <div class="container">
         <div class="about-content">
           <div class="about-text">
-            <span class="section-subtitle">→ Over mij</span>
+            <span class="section-subtitle">Over mij</span>
             <h2 class="section-title">
-              <span class="title-main">Gewoon</span>
-              <span class="title-outline">Goed Werk</span>
+              <span class="title-main">Specialist in</span>
+              <span class="title-outline">Vastgoedfotografie</span>
             </h2>
             <p class="about-description">
-              Gespecialiseerd in drone video, drone fotografie en 360° luchtfotografie. Geen stress, geen vaag gedoe. Gewoon een fijne samenwerking en beelden waar je blij van wordt.
+              Gespecialiseerd in drone video, drone fotografie en 360° luchtfotografie voor de vastgoedmarkt. Professionele luchtbeelden die uw panden perfect presenteren en sneller helpen verkopen.
             </p>
 
             <div class="stats-grid">
@@ -132,10 +192,10 @@
 
             <div class="about-details">
               <p>
-               Klaar om jouw project naar een hoger niveau te brengen. Met moderne technieken en oog voor detail lever ik werk waar je trots op kunt zijn.
+                Met de nieuwste DJI drone-technologie lever ik scherpe 4K beelden en 360° panorama's die uw vastgoed perfect in beeld brengen. Van luxe villa's tot nieuwbouwprojecten.
               </p>
               <p>
-                Ik combineer techniek, creativiteit en teamwork om het beste resultaat te halen.
+                Snel, betrouwbaar en professioneel. Uw projecten verdienen de beste presentatie.
               </p>
             </div>
           </div>

@@ -109,6 +109,16 @@ function renderPortfolioItems(items, portfolioGrid) {
 
 function setupNavigation() {
   const navLinks = document.querySelectorAll('.nav-link, .back-to-top')
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle')
+  const nav = document.querySelector('.nav')
+
+  // Mobile menu toggle
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenuToggle.classList.toggle('active')
+      nav.classList.toggle('active')
+    })
+  }
 
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -123,16 +133,30 @@ function setupNavigation() {
         if (targetElement) {
           targetElement.scrollIntoView({ behavior: 'smooth' })
         }
+
+        // Close mobile menu after clicking
+        if (nav.classList.contains('active')) {
+          nav.classList.remove('active')
+          mobileMenuToggle.classList.remove('active')
+        }
       }
     })
+  })
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target) && nav.classList.contains('active')) {
+      nav.classList.remove('active')
+      mobileMenuToggle.classList.remove('active')
+    }
   })
 
   window.addEventListener('scroll', () => {
     const header = document.querySelector('.header')
     if (window.scrollY > 100) {
-      header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)'
+      header.style.backgroundColor = 'rgba(250, 250, 249, 0.98)'
     } else {
-      header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)'
+      header.style.backgroundColor = 'rgba(250, 250, 249, 0.95)'
     }
   })
 }
