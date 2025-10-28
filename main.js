@@ -73,13 +73,19 @@ function renderPortfolioItems(items, portfolioGrid) {
         : item.image_url
 
       return `
-        <div class="portfolio-item" data-id="${item.id}" ${hasVideo ? `data-vimeo="${item.vimeo_url}"` : ''} ${has360Photo ? `data-360="${item.photo_360_url}"` : ''}>
+        <div class="portfolio-item" data-id="${item.id}"
+             data-title="${item.title}"
+             data-category="${item.category || 'Project'}"
+             data-description="${item.description || ''}"
+             ${hasVideo ? `data-vimeo="${item.vimeo_url}"` : ''}
+             ${has360Photo ? `data-360="${item.photo_360_url}"` : ''}
+             ${thumbnailUrl ? `data-image="${thumbnailUrl}"` : ''}>
           ${thumbnailUrl ? `<img src="${thumbnailUrl}" alt="${item.title}" loading="lazy" decoding="async" />` : ''}
           ${playIconHtml}
           ${view360IconHtml}
           <div class="portfolio-overlay">
             <div>
-              <span class="portfolio-category">${item.category || 'Work'}</span>
+              <span class="portfolio-category">${item.category || 'Project'}</span>
               <h3 class="portfolio-title">${item.title}</h3>
             </div>
           </div>
@@ -87,24 +93,69 @@ function renderPortfolioItems(items, portfolioGrid) {
       `
     }).join('')
 
-    portfolioGrid.querySelectorAll('.portfolio-item[data-vimeo]').forEach(item => {
+    portfolioGrid.querySelectorAll('.portfolio-item').forEach(item => {
       item.addEventListener('click', () => {
-        const vimeoUrl = item.dataset.vimeo
-        const title = item.querySelector('.portfolio-title').textContent
-        if (vimeoUrl) {
-          openVideoViewer(vimeoUrl, title)
-        }
-      })
-    })
+        const hasVideo = item.dataset.vimeo
+        const has360 = item.dataset['360']
 
-    portfolioGrid.querySelectorAll('.portfolio-item[data-360]').forEach(item => {
-      item.addEventListener('click', () => {
-        const photo360Url = item.dataset['360']
-        if (photo360Url) {
-          open360Viewer(photo360Url, item.querySelector('.portfolio-title').textContent)
+        if (hasVideo) {
+          openVideoViewer(item.dataset.vimeo, item.dataset.title)
+        } else if (has360) {
+          open360Viewer(item.dataset['360'], item.dataset.title)
+        } else {
+          openProjectDetail(item)
         }
       })
     })
+}
+
+function openProjectDetail(itemElement) {
+  const modal = document.createElement('div')
+  modal.className = 'project-detail-modal'
+
+  const title = itemElement.dataset.title
+  const category = itemElement.dataset.category
+  const description = itemElement.dataset.description
+  const imageUrl = itemElement.dataset.image
+
+  modal.innerHTML = `
+    <div class="project-detail-content">
+      <button class="project-detail-close">&times;</button>
+      <div class="project-detail-image">
+        ${imageUrl ? `<img src="${imageUrl}" alt="${title}" />` : ''}
+      </div>
+      <div class="project-detail-info">
+        <span class="project-detail-category">${category}</span>
+        <h2 class="project-detail-title">${title}</h2>
+        ${description ? `<p class="project-detail-description">${description}</p>` : ''}
+        <a href="#contact" class="btn btn-primary" onclick="document.querySelector('.project-detail-modal').remove()">Start Vergelijkbaar Project</a>
+      </div>
+    </div>
+  `
+
+  document.body.appendChild(modal)
+  setTimeout(() => modal.classList.add('show'), 10)
+
+  const closeBtn = modal.querySelector('.project-detail-close')
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('show')
+    setTimeout(() => modal.remove(), 300)
+  })
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show')
+      setTimeout(() => modal.remove(), 300)
+    }
+  })
+
+  document.addEventListener('keydown', function escHandler(e) {
+    if (e.key === 'Escape') {
+      modal.classList.remove('show')
+      setTimeout(() => modal.remove(), 300)
+      document.removeEventListener('keydown', escHandler)
+    }
+  })
 }
 
 function setupNavigation() {
